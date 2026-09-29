@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  /* Compense le header fixe lors des ancres (#conception, #contact…) */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  background: #f7f6f2;
+  color: #1a1c17;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #dfe6e0;
+}
+
+/* Focus visible sobre mais net, pour la navigation clavier. */
+:focus-visible {
+  outline: 2px solid #4a6b58;
+  outline-offset: 3px;
+}
+
+/* Apparition au scroll — pilotée par components/Reveal.tsx.
+   Une seule transition, aucune librairie d'animation. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Respect strict des préférences système : aucune animation imposée. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

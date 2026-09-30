@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <>
       <Header overDark={false} />
-      <main id="contenu" className="pt-[68px]">
+      <main id="contenu" className="pt-[94px]">
         <section className="bg-paper py-28 sm:py-36">
           <div className="mx-auto max-w-[660px] px-5 text-center sm:px-8">
             <p className="text-[11px] uppercase tracking-eyebrow text-mute">

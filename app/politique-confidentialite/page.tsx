@@ -13,7 +13,7 @@ export default function ConfidentialitePage() {
   return (
     <>
       <Header overDark={false} />
-      <main id="contenu" className="pt-[68px]">
+      <main id="contenu" className="pt-[94px]">
         <section className="bg-paper py-20 sm:py-24">
           <div className="mx-auto max-w-[760px] px-5 sm:px-8">
             <h1 className="font-display text-[34px] leading-[1.15] text-ink sm:text-[42px]">

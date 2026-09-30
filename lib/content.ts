@@ -67,7 +67,6 @@ export const navLinks = [
   { href: "/#realisations", label: "Réalisations" },
   { href: "/#a-propos", label: "À propos" },
   { href: "/#avis", label: "Avis" },
-  { href: "/#contact", label: "Contact" },
 ];
 
 // ── SERVICES ─────────────────────────────────────────────────────────────
@@ -232,9 +231,9 @@ export const projectTypes = [
 ];
 
 export const budgetRanges = [
+  "Je ne sais pas encore",
   "Moins de 5 000 €",
   "5 000 – 15 000 €",
   "15 000 – 30 000 €",
   "Plus de 30 000 €",
-  "Je ne sais pas encore",
 ];

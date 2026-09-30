@@ -15,8 +15,8 @@ const reviews: Review[] = [];
 
 export default function Reviews() {
   return (
-    <section id="avis" className="border-t border-line bg-cream/60 py-24 sm:py-28">
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
+    <section id="avis" className="border-t border-line bg-cream/60 py-[clamp(72px,9vw,112px)]">
+      <div className="mx-auto max-w-content px-[clamp(20px,4vw,48px)]">
         <Reveal>
           <p className="text-[11px] uppercase tracking-eyebrow text-mute">
             Avis clients
@@ -26,7 +26,7 @@ export default function Reviews() {
         {reviews.length === 0 ? (
           <Reveal delay={80}>
             <div className="mt-8 max-w-[720px]">
-              <p className="font-display text-[24px] leading-[1.3] text-ink sm:text-[30px]">
+              <p className="font-display text-[clamp(24px,3vw,30px)] leading-[1.3] text-ink">
                 Les avis de nos clients seront publiés ici.
               </p>
               <p className="mt-5 text-[16px] leading-[1.8] text-graphite">

@@ -11,14 +11,14 @@ export default function QuoteSection({
   intro?: string;
 }) {
   return (
-    <section id="contact" className="border-t border-line bg-paper py-24 sm:py-28 lg:py-32">
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
+    <section id="contact" className="border-t border-line bg-paper py-[clamp(72px,9vw,128px)]">
+      <div className="mx-auto max-w-content px-[clamp(20px,4vw,48px)]">
+        <div className="flex flex-wrap gap-[clamp(32px,5vw,64px)]">
+          <Reveal className="flex-[1_1_320px]">
             <p className="text-[11px] uppercase tracking-eyebrow text-mute">
               Contact
             </p>
-            <h2 className="mt-6 font-display text-[30px] leading-[1.15] text-ink sm:text-[40px]">
+            <h2 className="mt-6 font-display text-[clamp(30px,3.8vw,40px)] font-normal leading-[1.15] text-ink">
               {title}
             </h2>
             <p className="mt-6 max-w-prose text-[16px] leading-[1.8] text-graphite">
@@ -33,7 +33,7 @@ export default function QuoteSection({
                 <dd className="mt-2">
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="font-display text-[22px] text-ink transition-colors hover:text-accent sm:text-[24px]"
+                    className="font-display text-[24px] text-ink"
                   >
                     {siteConfig.email}
                   </a>
@@ -46,7 +46,7 @@ export default function QuoteSection({
                 <dd className="mt-2">
                   <a
                     href={`tel:${siteConfig.phoneHref}`}
-                    className="font-display text-[22px] text-ink transition-colors hover:text-accent sm:text-[24px]"
+                    className="font-display text-[24px] text-ink"
                   >
                     {siteConfig.phone}
                   </a>
@@ -87,7 +87,7 @@ export default function QuoteSection({
             </dl>
           </Reveal>
 
-          <Reveal className="lg:col-span-7" delay={120}>
+          <Reveal className="flex-[1.4_1_400px]" delay={90}>
             <QuoteForm />
           </Reveal>
         </div>

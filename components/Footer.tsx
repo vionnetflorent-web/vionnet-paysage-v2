@@ -1,149 +1,76 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import Reveal from "./Reveal";
 import { navLinks, siteConfig } from "@/lib/content";
-import { servicePages } from "@/lib/servicePages";
-import { localPages } from "@/lib/localPages";
 
-const legalLinks = [
-  { href: "/mentions-legales", label: "Mentions légales" },
-  { href: "/politique-confidentialite", label: "Politique de confidentialité" },
-];
-
-/**
- * Footer. Porte aussi le maillage interne vers les pages prestations et
- * les pages locales : c'est ce qui permet à Google de les découvrir et de
- * comprendre leur rattachement au site.
- */
+/** Pied de page : photographie en fond, voile vert, logo blanc. */
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-forest py-16 text-white sm:py-20">
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
+    <footer className="relative overflow-hidden bg-forest pb-[clamp(28px,3.5vw,44px)] pt-[clamp(56px,7vw,80px)]">
+      <Image src="/images/hero.png" alt="" fill sizes="100vw" className="vp-zoom object-cover" />
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(to bottom, rgba(78,112,80,.55), rgba(66,98,68,.72))" }}
+      />
+      <div className="relative mx-auto max-w-content px-[clamp(20px,4vw,48px)]">
+        <div className="flex flex-wrap gap-[clamp(32px,5vw,64px)]">
+          <Reveal className="flex-[1.4_1_300px]">
             <Image
               src="/images/vionnet-logo-blanc.png"
               alt={siteConfig.name}
               width={1368}
               height={850}
-              sizes="220px"
-              className="h-[54px] w-auto"
+              sizes="90px"
+              className="block h-[54px] w-auto"
             />
-            <p className="mt-6 max-w-[380px] text-[15px] leading-[1.8] text-[#e6ede6]">
-              Paysagiste à {siteConfig.cityTarget}, {siteConfig.city} et dans
-              les {siteConfig.department}. Conception, aménagement et entretien
-              de jardins.
+            <p className="mt-6 max-w-[380px] text-[15px] leading-[1.8] text-[#e9efea]">
+              Paysagiste à Saint-Brieuc, Saint-Quay-Portrieux et dans les
+              Côtes-d&apos;Armor. Conception, aménagement et entretien de jardins.
             </p>
-          </div>
+          </Reveal>
 
-          <nav aria-label="Prestations" className="lg:col-span-3">
-            <h2 className="text-[11px] uppercase tracking-[0.16em] text-[#d3ddd3]">
-              Prestations
-            </h2>
-            <ul className="mt-5 space-y-3">
-              {servicePages.map((page) => (
-                <li key={page.slug}>
-                  <Link
-                    href={`/${page.slug}`}
-                    className="text-[15px] text-[#e6ede6] transition-colors duration-300 hover:text-white"
-                  >
-                    {page.h1}
-                  </Link>
-                </li>
+          <Reveal delay={90} className="flex-[1_1_180px]">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-[#dbe3dd]">Navigation</p>
+            <nav aria-label="Pied de page" className="mt-5 flex flex-col gap-3">
+              {[...navLinks, { href: "/#contact", label: "Contact" }].map((l) => (
+                <Link key={l.href} href={l.href} className="text-[15px] text-[#e9efea] hover:text-white">
+                  {l.label}
+                </Link>
               ))}
-            </ul>
-          </nav>
+            </nav>
+          </Reveal>
 
-          <nav aria-label="Secteurs" className="lg:col-span-2">
-            <h2 className="text-[11px] uppercase tracking-[0.16em] text-[#d3ddd3]">
-              Secteurs
-            </h2>
-            <ul className="mt-5 space-y-3">
-              {localPages.map((page) => (
-                <li key={page.slug}>
-                  <Link
-                    href={`/${page.slug}`}
-                    className="text-[15px] text-[#e6ede6] transition-colors duration-300 hover:text-white"
-                  >
-                    {page.city}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <ul className="mt-6 space-y-3">
-              {navLinks.slice(0, 3).map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[15px] text-[#e6ede6] transition-colors duration-300 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="lg:col-span-3">
-            <h2 className="text-[11px] uppercase tracking-[0.16em] text-[#d3ddd3]">
-              Contact
-            </h2>
-            <ul className="mt-5 space-y-3 text-[15px]">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="text-[#e6ede6] transition-colors duration-300 hover:text-white"
-                >
-                  {siteConfig.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${siteConfig.phoneHref}`}
-                  className="text-[#e6ede6] transition-colors duration-300 hover:text-white"
-                >
-                  {siteConfig.phone}
-                </a>
-              </li>
-              <li className="text-[#dbe4db]">{siteConfig.areaLong}</li>
-              {siteConfig.googleBusinessUrl && (
-                <li>
-                  <a
-                    href={siteConfig.googleBusinessUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#e6ede6] underline decoration-white/30 underline-offset-4 transition-colors duration-300 hover:text-white"
-                  >
-                    Voir sur Google Maps
-                  </a>
-                </li>
-              )}
-            </ul>
-
+          <Reveal delay={180} className="flex-[1_1_220px]">
+            <p className="text-[11px] uppercase tracking-[0.16em] text-[#dbe3dd]">Contact</p>
+            <div className="mt-5 flex flex-col gap-3 text-[15px]">
+              <a href={`mailto:${siteConfig.email}`} className="text-[#e9efea] hover:text-white">
+                {siteConfig.email}
+              </a>
+              <a href={`tel:${siteConfig.phoneHref}`} className="text-[#e9efea] hover:text-white">
+                {siteConfig.phone}
+              </a>
+              <span className="text-[#dbe3dd]">Saint-Brieuc et les Côtes-d&apos;Armor (22)</span>
+            </div>
             <Link
-              href="/devis"
-              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-[2px] border border-white/50 px-6 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-colors duration-500 ease-premium hover:bg-white hover:text-ink"
+              href="/#contact"
+              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-[2px] border border-white/40 px-6 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-all duration-500 ease-premium hover:bg-white hover:text-ink"
             >
               Demander un devis
             </Link>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-[13px] text-[#dbe4db] sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {siteConfig.year} {siteConfig.name}
-          </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {legalLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="transition-colors duration-300 hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-8 text-[13px] text-[#dbe3dd]">
+          <span>© {new Date().getFullYear()} {siteConfig.name}</span>
+          <div className="flex flex-wrap gap-6">
+            <Link href="/mentions-legales" className="text-[#dbe3dd] hover:text-white">
+              Mentions légales
+            </Link>
+            <Link href="/politique-confidentialite" className="text-[#dbe3dd] hover:text-white">
+              Politique de confidentialité
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

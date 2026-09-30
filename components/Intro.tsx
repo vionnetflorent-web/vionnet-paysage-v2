@@ -1,43 +1,38 @@
 import Reveal from "./Reveal";
-import { siteConfig } from "@/lib/content";
 
-/** Présentation courte de l'entreprise, juste après le Hero. */
+/** Présentation courte de l'entreprise. */
 export default function Intro() {
   return (
-    <section className="bg-paper py-24 sm:py-32 lg:py-40">
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="lg:col-span-4">
-            <p className="text-[11px] uppercase tracking-eyebrow text-mute">
-              {siteConfig.name}
-            </p>
-            <p className="mt-6 font-display text-[26px] leading-[1.25] text-ink sm:text-[32px]">
-              Une entreprise de paysage installée dans les {siteConfig.department}.
-            </p>
-          </Reveal>
-
-          <Reveal className="lg:col-span-7 lg:col-start-6" delay={120}>
-            <div className="space-y-6 text-[16px] leading-[1.8] text-graphite sm:text-[17px]">
-              <p>
-                Nous concevons et réalisons des jardins et des aménagements
-                extérieurs autour de Saint-Quay Portrieux : étude du terrain,
-                plans, terrassement, maçonnerie paysagère, terrasse bois,
-                plantations, clôtures et arrosage automatique.
-              </p>
-              <p>
-                Chaque projet part des contraintes réelles du site — nature du
-                sol, exposition, accès, gestion de l&apos;eau — et de vos usages.
-                C&apos;est ce qui détermine le dessin, le choix des végétaux et
-                celui des matériaux.
-              </p>
-              <p>
-                Nous assurons l&apos;exécution des travaux et, lorsque vous le
-                souhaitez, l&apos;entretien qui suit. Un seul interlocuteur, du
-                premier relevé au suivi des plantations.
-              </p>
-            </div>
-          </Reveal>
-        </div>
+    <section className="bg-paper py-[clamp(80px,10vw,160px)]">
+      <div className="mx-auto flex max-w-content flex-wrap gap-[clamp(32px,5vw,64px)] px-[clamp(20px,4vw,48px)]">
+        <Reveal className="flex-[1_1_280px]">
+          <p className="text-[11px] uppercase tracking-eyebrow text-mute">Vionnet Paysage</p>
+          <h2 className="mt-6 font-display text-[clamp(26px,3vw,32px)] font-normal leading-[1.25] text-ink">
+            Une entreprise de paysage installée dans les Côtes-d&apos;Armor.
+          </h2>
+        </Reveal>
+        <Reveal
+          delay={90}
+          className="flex flex-[1.6_1_420px] flex-col gap-6 text-[clamp(16px,1.5vw,17px)] leading-[1.8] text-graphite"
+        >
+          <p>
+            Nous concevons et réalisons des jardins et des aménagements
+            extérieurs autour de Saint-Quay Portrieux : étude du terrain, plans,
+            terrassement, maçonnerie paysagère, terrasse bois, plantations,
+            clôtures et arrosage automatique.
+          </p>
+          <p>
+            Chaque projet commence par une lecture du lieu : son exposition, ses
+            accès, ses usages et son architecture. Ces contraintes dessinent le
+            projet et orientent le choix des végétaux et des matériaux, dans une
+            recherche de continuité avec l’habitation.
+          </p>
+          <p>
+            Nous assurons l&apos;exécution des travaux et, lorsque vous le
+            souhaitez, l&apos;entretien qui suit. Un seul interlocuteur, du
+            premier relevé au suivi des plantations.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

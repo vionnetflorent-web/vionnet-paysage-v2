@@ -21,7 +21,7 @@ export default function DevisPage() {
         ])}
       />
       <Header overDark={false} />
-      <main id="contenu" className="pt-[68px]">
+      <main id="contenu" className="pt-[94px]">
         <QuoteSection
           title="Demander un devis"
           intro="Renseignez votre projet ci-dessous. Nous vous rappelons pour convenir d'une visite du terrain, indispensable avant tout chiffrage sérieux."

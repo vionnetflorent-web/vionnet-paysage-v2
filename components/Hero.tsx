@@ -1,56 +1,58 @@
 import Image from "next/image";
-import Logo from "./Logo";
-import Button from "./Button";
-import { siteConfig } from "@/lib/content";
+import Link from "next/link";
 
-/**
- * Hero plein écran.
- *
- * 📷 PHOTOGRAPHIE : remplacez /public/images/hero.png par votre propre
- * photographie de jardin (paysage contemporain, terrasse, plantations).
- * Conservez le même nom de fichier — rien d'autre n'est à modifier.
- * L'image actuelle est un fond sombre neutre de remplacement : elle
- * garantit le contraste nécessaire au logo blanc en attendant la photo.
- */
+/** Hero plein écran — photographie, logo blanc, titre, deux boutons. */
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-forest">
+    <section id="top" className="relative flex min-h-[100svh] items-end overflow-hidden bg-forest">
       <Image
         src="/images/hero.png"
         alt="Jardin paysager réalisé par Vionnet Paysage dans les Côtes-d'Armor"
         fill
         priority
         sizes="100vw"
-        quality={85}
-        className="object-cover"
+        className="vp-zoom object-cover"
       />
-      {/* Voiles de lisibilité — garantissent le contraste du texte blanc */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/45"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(30,45,35,.62) 0%, rgba(38,56,44,.34) 42%, rgba(60,80,62,.10) 100%)",
+        }}
       />
 
-      <div className="relative mx-auto w-full max-w-content px-5 pb-16 pt-32 sm:px-8 sm:pb-20 lg:px-12 lg:pb-24">
+      <div className="relative mx-auto w-full max-w-content px-[clamp(20px,4vw,48px)] pb-[clamp(64px,8vw,96px)] pt-[140px]">
         <div className="max-w-[760px]">
-          {/* Logo original en version blanche */}
-          <div className="w-[min(78vw,460px)]">
-            <Logo variant="white" linkTo={null} priority />
-          </div>
-
-          <h1 className="mt-10 font-display text-[34px] font-normal leading-[1.1] text-white sm:text-[46px] lg:text-[58px]">
-            Paysagiste à {siteConfig.cityTarget}
+          <Image
+            src="/images/vionnet-logo-blanc.png"
+            alt="Vionnet Paysage"
+            width={1368}
+            height={850}
+            priority
+            sizes="460px"
+            className="vp-in vp-in-1 block h-auto w-[min(78%,460px)]"
+          />
+          <h1 className="vp-in vp-in-2 mt-10 font-display text-[clamp(34px,5.2vw,58px)] font-normal leading-[1.1] text-white">
+            Paysagiste à Saint-Brieuc
           </h1>
-          <p className="mt-5 max-w-prose text-[16px] leading-[1.75] text-white/85 sm:text-[18px]">
-            Conception, aménagement et entretien de jardins à{" "}
-            {siteConfig.cityTarget}, {siteConfig.city} et dans les{" "}
-            {siteConfig.department} ({siteConfig.departmentCode}).
+          <p className="vp-in vp-in-3 mt-5 max-w-[660px] text-[clamp(16px,1.6vw,18px)] leading-[1.75] text-white/85">
+            Conception, aménagement et entretien de jardins à Saint-Brieuc,
+            Saint-Quay-Portrieux et dans les Côtes-d&apos;Armor (22).
           </p>
-
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Button href="/devis">Demander un devis</Button>
-            <Button href="/#realisations" variant="light">
+          <div className="vp-in vp-in-4 mt-10 flex flex-wrap gap-3.5">
+            <Link
+              href="/#contact"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-[2px] bg-forest px-7 text-[12px] font-medium uppercase tracking-[0.16em] text-paper transition-colors duration-500 ease-premium hover:bg-moss"
+            >
+              Demander un devis
+            </Link>
+            <Link
+              href="/#realisations"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-[2px] border border-white/45 px-7 text-[12px] font-medium uppercase tracking-[0.16em] text-white transition-all duration-500 ease-premium hover:bg-white hover:text-ink"
+            >
               Voir nos réalisations
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

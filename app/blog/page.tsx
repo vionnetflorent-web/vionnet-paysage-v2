@@ -16,7 +16,7 @@ export default function BlogPage() {
   return (
     <>
       <Header overDark={false} />
-      <main id="contenu" className="pt-[68px]">
+      <main id="contenu" className="pt-[94px]">
         <section className="bg-paper py-24 sm:py-28">
           <div className="mx-auto max-w-[760px] px-5 sm:px-8">
             <p className="text-[11px] uppercase tracking-eyebrow text-mute">

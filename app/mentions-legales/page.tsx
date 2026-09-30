@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -25,7 +26,7 @@ export default function MentionsLegalesPage() {
   return (
     <>
       <Header overDark={false} />
-      <main id="contenu" className="pt-[68px]">
+      <main id="contenu" className="pt-[94px]">
         <section className="bg-paper py-20 sm:py-24">
           <div className="mx-auto max-w-[760px] px-5 sm:px-8">
             <h1 className="font-display text-[34px] leading-[1.15] text-ink sm:text-[42px]">
@@ -89,12 +90,12 @@ export default function MentionsLegalesPage() {
                 <p className="mt-3">
                   Les modalités de traitement des données transmises via le
                   formulaire de devis sont détaillées dans notre{" "}
-                  <a
+                  <Link
                     href="/politique-confidentialite"
                     className="border-b border-ink/30 text-ink hover:border-ink"
                   >
                     politique de confidentialité
-                  </a>
+                  </Link>
                   .
                 </p>
               </section>

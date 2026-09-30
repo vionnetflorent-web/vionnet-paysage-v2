@@ -1,67 +1,36 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
-import Button from "./Button";
 import { siteConfig } from "@/lib/content";
 
-/**
- * Bande d'appel à l'action, réutilisée à plusieurs endroits du parcours
- * (après les services, après les réalisations…). `tone` permet d'alterner
- * avec la section qui précède sans casser le rythme visuel.
- */
+/** Bande d'appel au devis, sur fond vert, juste avant la méthode. */
 export default function CtaBand({
-  title,
-  text,
-  tone = "dark",
+  title = "Et si votre extérieur devenait un vrai projet ?",
+  text = "Visite du terrain et devis détaillé, sans engagement.",
 }: {
-  title: string;
+  title?: string;
   text?: string;
-  tone?: "dark" | "light";
 }) {
-  const dark = tone === "dark";
-
   return (
-    <section
-      className={`border-t py-16 sm:py-20 ${
-        dark ? "border-forest bg-forest" : "border-line bg-paper"
-      }`}
-    >
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <Reveal>
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-[640px]">
-              <h2
-                className={`font-display text-[26px] leading-[1.2] sm:text-[34px] ${
-                  dark ? "text-white" : "text-ink"
-                }`}
-              >
-                {title}
-              </h2>
-              {text && (
-                <p
-                  className={`mt-4 text-[16px] leading-[1.75] ${
-                    dark ? "text-[#e6ede6]" : "text-graphite"
-                  }`}
-                >
-                  {text}
-                </p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <Button href="/devis" variant={dark ? "light" : "solid"}>
-                Demander un devis
-              </Button>
-              <a
-                href={`tel:${siteConfig.phoneHref}`}
-                className={`text-[15px] tracking-[0.02em] transition-colors sm:px-2 ${
-                  dark ? "text-[#e6ede6] hover:text-white" : "text-graphite hover:text-ink"
-                }`}
-              >
-                {siteConfig.phone}
-              </a>
-            </div>
-          </div>
-        </Reveal>
-      </div>
+    <section className="border-t border-forest bg-forest pb-[clamp(28px,3.5vw,44px)] pt-[clamp(56px,7vw,80px)]">
+      <Reveal className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-8 px-[clamp(20px,4vw,48px)]">
+        <div className="max-w-[640px]">
+          <h2 className="font-display text-[clamp(26px,3.2vw,34px)] font-normal leading-[1.2] text-white">
+            {title}
+          </h2>
+          <p className="mt-4 text-[16px] leading-[1.75] text-[#e9efea]">{text}</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-5">
+          <Link
+            href="/#contact"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-[2px] border border-white/45 px-7 text-[12px] font-medium uppercase tracking-[0.16em] text-white transition-all duration-500 ease-premium hover:bg-white hover:text-ink"
+          >
+            Demander un devis
+          </Link>
+          <a href={`tel:${siteConfig.phoneHref}`} className="text-[15px] text-[#e9efea] hover:text-white">
+            {siteConfig.phone}
+          </a>
+        </div>
+      </Reveal>
     </section>
   );
 }

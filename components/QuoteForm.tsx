@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { budgetRanges, projectTypes, siteConfig } from "@/lib/content";
 
@@ -156,7 +157,7 @@ export default function QuoteForm() {
           <select
             id="budget"
             name="budget"
-            defaultValue={budgetRanges[budgetRanges.length - 1]}
+            defaultValue={budgetRanges[0]}
             className={fieldBase}
           >
             {budgetRanges.map((range) => (
@@ -224,12 +225,12 @@ export default function QuoteForm() {
         <p className="mt-2 text-[13px] leading-[1.7] text-mute">
           Les informations transmises servent uniquement à répondre à votre
           demande. Voir notre{" "}
-          <a
+          <Link
             href="/politique-confidentialite"
             className="border-b border-mute/50 transition-colors hover:text-ink"
           >
             politique de confidentialité
-          </a>
+          </Link>
           .
         </p>
       </div>

@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
-import Prestations from "@/components/Prestations";
 import Method from "@/components/Method";
 import Realisations from "@/components/Realisations";
 import About from "@/components/About";
@@ -26,11 +25,7 @@ export default function HomePage() {
       <main id="contenu">
         <Hero />
         <Intro />
-        <Prestations />
-        <CtaBand
-          title="Et si votre extérieur devenait un vrai projet ?"
-          text="Visite du terrain et devis détaillé, sans engagement."
-        />
+        <CtaBand />
         <Method />
         <Realisations />
         <About />

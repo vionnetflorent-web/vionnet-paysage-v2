@@ -5,13 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { navLinks, siteConfig } from "@/lib/content";
 
+const EASE = "ease-premium duration-500";
+
 /**
- * Header premium.
- * - Transparent au-dessus du Hero, logo en version blanche.
- * - Au scroll : fond clair très légèrement translucide, blur léger,
- *   logo couleur. Transition douce et rapide.
- * - `overDark={false}` pour les pages sans Hero photographique : le header
- *   y est clair dès le chargement.
+ * Header — identique à l'aperçu.
+ * - Au-dessus du Hero : transparent, SANS logo (le grand logo blanc du Hero
+ *   suffit), liens blancs, bouton vert.
+ * - Au scroll : fond clair translucide + léger blur, le logo couleur
+ *   apparaît en fondu, la barre se resserre.
+ * - `overDark={false}` pour les pages sans Hero photographique.
  */
 export default function Header({ overDark = true }: { overDark?: boolean }) {
   const [scrolled, setScrolled] = useState(!overDark);
@@ -25,7 +27,6 @@ export default function Header({ overDark = true }: { overDark?: boolean }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [overDark]);
 
-  // Bloque le défilement de la page derrière le menu mobile ouvert.
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -38,46 +39,41 @@ export default function Header({ overDark = true }: { overDark?: boolean }) {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-premium ${
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all ${EASE} ${
           solid
-            ? "border-b border-line/70 bg-paper/85 backdrop-blur-[6px]"
-            : "border-b border-transparent bg-transparent"
+            ? "border-line/70 bg-paper/85 backdrop-blur-[6px]"
+            : "border-transparent bg-transparent"
         }`}
       >
         <div
-          className={`mx-auto flex max-w-content items-center justify-between px-5 transition-all duration-500 ease-premium sm:px-8 lg:px-12 ${
-            solid ? "h-[68px]" : "h-[92px]"
+          className={`mx-auto flex max-w-content items-center justify-between px-[clamp(20px,4vw,48px)] transition-[height] ${EASE} ${
+            solid ? "h-[94px]" : "h-[124px]"
           }`}
         >
-          {/* Logo — fichier original, simple bascule couleur / blanc */}
           <Link
             href="/"
             aria-label={`${siteConfig.name} — accueil`}
-            className="relative block shrink-0"
+            className={`relative block shrink-0 transition-all ${EASE} ${
+              solid ? "h-[66px] opacity-100" : "pointer-events-none h-[84px] opacity-0"
+            }`}
           >
             <Image
-              src={solid ? "/images/vionnet-logo.png" : "/images/vionnet-logo-blanc.png"}
-              alt={siteConfig.name}
+              src="/images/vionnet-logo.png"
+              alt={`${siteConfig.name} — paysagiste à Saint-Brieuc`}
               width={1368}
               height={850}
               priority
-              sizes="180px"
-              className={`w-auto transition-all duration-500 ease-premium ${
-                solid ? "h-[38px]" : "h-[48px]"
-              }`}
+              sizes="140px"
+              className="h-full w-auto"
             />
           </Link>
 
-          {/* Navigation desktop */}
-          <nav
-            aria-label="Navigation principale"
-            className="hidden items-center gap-8 lg:flex"
-          >
+          <nav aria-label="Navigation principale" className="hidden items-center gap-[clamp(14px,2vw,32px)] min-[921px]:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[13px] tracking-[0.04em] transition-colors duration-300 ${
+                className={`vp-underline text-[13px] tracking-[0.04em] transition-colors duration-300 ${
                   solid ? "text-graphite hover:text-ink" : "text-white/85 hover:text-white"
                 }`}
               >
@@ -85,34 +81,29 @@ export default function Header({ overDark = true }: { overDark?: boolean }) {
               </Link>
             ))}
             <Link
-              href="/devis"
-              className={`ml-2 rounded-[2px] px-6 py-3 text-[11px] font-medium uppercase tracking-[0.16em] transition-all duration-500 ease-premium ${
-                solid
-                  ? "bg-forest text-paper hover:bg-moss"
-                  : "border border-white/50 text-white hover:bg-white hover:text-ink"
-              }`}
+              href="/#contact"
+              className={`ml-1.5 whitespace-nowrap rounded-[2px] border border-forest bg-forest px-[22px] py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-white transition-all hover:border-moss hover:bg-moss ${EASE}`}
             >
               Demander un devis
             </Link>
           </nav>
 
-          {/* Bouton menu mobile */}
           <button
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             aria-expanded={menuOpen}
             aria-controls="menu-mobile"
             aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-            className="-mr-2 flex h-12 w-12 items-center justify-center lg:hidden"
+            className="-mr-2.5 flex h-12 w-12 items-center justify-center min-[921px]:hidden"
           >
             <span className="relative block h-[10px] w-[22px]">
               <span
-                className={`absolute left-0 block h-px w-full transition-all duration-500 ease-premium ${
+                className={`absolute left-0 block h-px w-full transition-all duration-[400ms] ease-premium ${
                   solid ? "bg-ink" : "bg-white"
                 } ${menuOpen ? "top-[5px] rotate-45" : "top-0"}`}
               />
               <span
-                className={`absolute left-0 block h-px w-full transition-all duration-500 ease-premium ${
+                className={`absolute left-0 block h-px w-full transition-all duration-[400ms] ease-premium ${
                   solid ? "bg-ink" : "bg-white"
                 } ${menuOpen ? "top-[5px] -rotate-45" : "top-[10px]"}`}
               />
@@ -121,16 +112,8 @@ export default function Header({ overDark = true }: { overDark?: boolean }) {
         </div>
       </header>
 
-      {/* Menu mobile plein écran, très sobre */}
-      <div
-        id="menu-mobile"
-        hidden={!menuOpen}
-        className="fixed inset-0 z-40 bg-paper lg:hidden"
-      >
-        <nav
-          aria-label="Navigation mobile"
-          className="flex h-full flex-col justify-center gap-1 px-8 pb-16 pt-24"
-        >
+      <div id="menu-mobile" hidden={!menuOpen} className="fixed inset-0 z-40 bg-paper min-[921px]:hidden">
+        <nav aria-label="Navigation mobile" className="flex h-full flex-col justify-center px-8 pb-16 pt-24">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -142,16 +125,13 @@ export default function Header({ overDark = true }: { overDark?: boolean }) {
             </Link>
           ))}
           <Link
-            href="/devis"
+            href="/#contact"
             onClick={() => setMenuOpen(false)}
-            className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-[2px] bg-forest px-7 text-[12px] font-medium uppercase tracking-[0.16em] text-paper"
+            className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-[2px] bg-forest text-[12px] font-medium uppercase tracking-[0.16em] text-paper"
           >
             Demander un devis
           </Link>
-          <a
-            href={`tel:${siteConfig.phoneHref}`}
-            className="mt-6 text-center text-sm text-graphite"
-          >
+          <a href={`tel:${siteConfig.phoneHref}`} className="mt-6 text-center text-[15px] text-graphite">
             {siteConfig.phone}
           </a>
         </nav>

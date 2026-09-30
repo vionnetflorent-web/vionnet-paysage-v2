@@ -2,11 +2,15 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import { realisations, type Realisation } from "@/lib/content";
 
-/**
- * Réalisations — les chantiers sont définis dans lib/content.ts
- * (`realisations`). Pour afficher une photo : déposez-la dans
- * public/images/realisations/ puis renseignez `image` sur l'entrée.
- */
+const spans = [
+  "lg:col-span-7",
+  "lg:col-span-5",
+  "lg:col-span-5",
+  "lg:col-span-7",
+  "lg:col-span-6",
+  "lg:col-span-6",
+];
+
 export default function Realisations() {
   return (
     <section id="realisations" className="border-t border-line bg-paper py-[clamp(72px,9vw,128px)]">
@@ -23,9 +27,9 @@ export default function Realisations() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-8">
+        <div className="mt-14 grid items-start gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-14">
           {realisations.map((item, i) => (
-            <RealisationCard key={item.slug} item={item} index={i} />
+            <RealisationCard key={item.slug} item={item} index={i} className={spans[i % spans.length]} />
           ))}
         </div>
       </div>
@@ -33,7 +37,6 @@ export default function Realisations() {
   );
 }
 
-/** Tuile d'une réalisation — partagée par l'accueil et la page /realisations. */
 export function RealisationCard({
   item,
   index = 0,
@@ -52,7 +55,7 @@ export function RealisationCard({
             src={item.image}
             alt={item.imageAlt ?? title}
             fill
-            sizes="(min-width: 1024px) 400px, 100vw"
+            sizes="(min-width: 1024px) 700px, 100vw"
             className="object-cover"
           />
         ) : (

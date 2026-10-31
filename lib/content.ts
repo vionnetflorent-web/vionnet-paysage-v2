@@ -23,7 +23,7 @@ export const siteConfig = {
 
   // ⚠️ À COMPLÉTER : remplacez par le domaine définitif avant mise en ligne.
   // Utilisé pour les URLs canoniques, le sitemap et l'Open Graph.
-  url: "https://vionnetpaysage.com",
+ url: "https://www.vionnetpaysage.com",
 
   email: "contact@vionnetpaysage.com",
   phone: "06 22 95 74 84",
